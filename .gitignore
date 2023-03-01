@@ -1,0 +1,9 @@
+*
+
+.env
+
+!.gitignore
+!*.ts
+!*.md
+!*.json
+!*.csv
