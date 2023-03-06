@@ -3,7 +3,7 @@
 Simple script to concurrently scrape and generate email reports from the NGP 7 API.
 
 ## Initial setup
-You'll need [node.js](https://nodejs.com) to run this program.
+You'll need [node.js](https://nodejs.org) to run this program.
 
 Clone this repo
 ```
