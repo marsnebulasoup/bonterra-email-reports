@@ -1,13 +1,20 @@
 import { BroadcastEmailsFetcher } from './api';
 import { createWriteStream } from "fs"
+import * as dotenv from 'dotenv';
 // @ts-ignore
 import { AsyncParser } from '@json2csv/node';
 
-const PATH = "test.csv";
+dotenv.config();
+
+const PATH = process.env.OUTPUT_PATH || "emails.csv";
+if (!process.env.API_KEY) {
+  console.log("No API key found. Please create a .env file with an API_KEY entry");
+  process.exit();
+}
 
 (async () => {
   console.log("Fetching...");
-  const fetcher = new BroadcastEmailsFetcher; // pass token in
+  const fetcher = new BroadcastEmailsFetcher(process.env.API_KEY!); // pass token in
   const emails = await fetcher.getFullBroadcastEmails();
 
   const parser = new AsyncParser();

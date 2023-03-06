@@ -1,17 +1,15 @@
 import { AxiosInstance } from './node_modules/axios/index.d';
 import axios from "axios";
 import { CancelledError, forEachLimit, mapLimit, Queue } from "modern-async";
-import * as dotenv from 'dotenv';
 
-dotenv.config();
 
 export class BroadcastEmailsFetcher {
   private api: AxiosInstance;
 
-  constructor() {
+  constructor(apiKey: string) {
     this.api = axios.create({
       baseURL: 'https://api.myngp.com/v2/broadcastEmails',
-      headers: { 'apiKey': process.env.API_KEY }
+      headers: { 'apiKey': apiKey }
     });
   }
 
