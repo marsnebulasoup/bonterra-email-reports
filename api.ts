@@ -1,4 +1,4 @@
-import { AxiosInstance } from './node_modules/axios/index.d';
+import { AxiosInstance } from 'axios';
 import axios from "axios";
 import { CancelledError, forEachLimit, mapLimit, Queue } from "modern-async";
 
