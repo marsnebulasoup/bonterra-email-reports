@@ -17,6 +17,9 @@ if (!process.env.API_KEY) {
   const fetcher = new BroadcastEmailsFetcher(process.env.API_KEY!); // pass token in
   const emails = await fetcher.getFullBroadcastEmails();
 
+  // sort in reverse order, as specified
+  emails.sort((a, b) => b.emailMessageId - a.emailMessageId);
+  
   const parser = new AsyncParser();
   const stream = createWriteStream(PATH);
   parser.parse(emails).pipe(stream);
