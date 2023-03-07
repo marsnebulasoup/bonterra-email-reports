@@ -61,7 +61,7 @@ What is being tested
 
 **Strategy**
   - API class | The API calls are externalized from the CSV conversion logic (which is handled by an external library), so the majority of tests should focus on that class. The easiest and most helpful automated, I believe, would be to emulate the API and compare the mocked responses with the class's outputs. Since API calls are made via axios, we can use [axios-mock-adapter](https://www.npmjs.com/package/axios-mock-adapter) to mock the API.
-  - CSV generation | Verify that a valid CSV file is generated. Note that CSV file generation is handled by an external module, so besides confirming that the file is generated, we don't need to do much to test this.
+  - CSV generation | Verify that a valid CSV file is generated at the path specified. Verify that if no path is specified, it outputs to the default path, "emails.csv". Note that CSV file generation is handled by an external module, so besides confirming that the file is generated, we don't need to do much to test this.
   - User interface | Test that the program displays the email IDs/names as they are being fetched, along with confirmation messages when complete. Also test that providing no API key displays an error message signifying so.
 
 **Requirements**
