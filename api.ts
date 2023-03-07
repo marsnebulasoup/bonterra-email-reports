@@ -26,7 +26,7 @@ export class BroadcastEmailsFetcher {
     }, parallelRequests);
   }
 
-  public async getBroadcastEmails(): Promise<BroadcastEmailInitial[]> {
+  private async getBroadcastEmails(): Promise<BroadcastEmailInitial[]> {
     const emails: BroadcastEmailInitial[] = [];
     const parallelRequests = 10;  // number of batches to fetch concurrently
     const itemsPerRequest = 5;    // number of items per request...must be greater than 0 to prevent infinite looping
@@ -59,7 +59,7 @@ export class BroadcastEmailsFetcher {
     return emails;
   }
 
-  public async getBroadcastEmailStatistics(emailMessageId: number): Promise<BroadcastEmailStatistics> {
+  private async getBroadcastEmailStatistics(emailMessageId: number): Promise<BroadcastEmailStatistics> {
     const resp = await this.api.get(`/${emailMessageId}`, {
       params: {
         "$expand": "statistics"
@@ -77,7 +77,7 @@ export class BroadcastEmailsFetcher {
   }
 
 
-  public async getBroadcastEmailTopVariant(emailMessageId: number, totalOpens: number, variants: BroadcastEmailVariant[]): Promise<BroadcastEmailVariant> {
+  private async getBroadcastEmailTopVariant(emailMessageId: number, totalOpens: number, variants: BroadcastEmailVariant[]): Promise<BroadcastEmailVariant> {
     const parallelRequests = 10; // number of requests to run in parallel
     const queue = new Queue(parallelRequests);
 
@@ -143,7 +143,7 @@ interface BroadcastEmailVariant {
   opens?: number
 }
 
-interface BroadcastEmail {
+export interface BroadcastEmail {
   emailMessageId: number,
   name: string,
   recipients: number,
